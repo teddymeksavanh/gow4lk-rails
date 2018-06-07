@@ -1,0 +1,18 @@
+class CreateStrolls < ActiveRecord::Migration[5.2]
+  def change
+    create_table :strolls do |t|
+      t.string :name
+      t.text :description
+      t.date :created_date
+      t.float :length
+      t.string :city
+      t.string :country
+      t.float :latitude
+      t.float :longitude
+      t.references :type, foreign_key: true
+      t.references :path, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
