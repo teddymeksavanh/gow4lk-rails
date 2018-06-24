@@ -68,7 +68,6 @@ RSpec.describe 'Strolls API', type: :request do
       before { post '/strolls', params: valid_attributes }
 
       it 'creates a stroll' do
-        puts json
         expect(json['name']).to eq('RunningPool')
         expect(json['description']).to eq('My running pool stroll')
         expect(json['created_date']).to eq('2017-09-17')
@@ -114,7 +113,8 @@ RSpec.describe 'Strolls API', type: :request do
       before { put "/strolls/#{stroll_id}", params: valid_attributes }
 
       it 'updates the record' do
-        expect(response.body).to be_empty
+        updated_stroll = Stroll.find(stroll_id)
+        expect(updated_stroll.name).to match(/Shopping route/)
       end
 
       it 'returns status code 204' do
