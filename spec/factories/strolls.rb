@@ -9,5 +9,6 @@ FactoryBot.define do
         country { Faker::Address.country }
         latitude { Faker::Address.latitude }
         longitude { Faker::Address.longitude }
+        created_by { Faker::Number.number(10) }
     end
   end

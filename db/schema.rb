@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_06_143457) do
+ActiveRecord::Schema.define(version: 2018_06_24_172746) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_143457) do
     t.string "country"
     t.float "latitude"
     t.float "longitude"
+    t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,6 +66,14 @@ ActiveRecord::Schema.define(version: 2018_06_06_143457) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stroll_id"], name: "index_types_on_stroll_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

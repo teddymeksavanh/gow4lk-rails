@@ -61,7 +61,8 @@ RSpec.describe 'Strolls API', type: :request do
         city: 'Paris',
         country: 'France',
         latitude: -58.17256227443719,
-        longitude: -156.65548382095133
+        longitude: -156.65548382095133,
+        created_by: 1
     } }
 
     context 'when the request is valid' do
@@ -91,7 +92,8 @@ RSpec.describe 'Strolls API', type: :request do
         city: 'Paris',
         country: 'France',
         latitude: '-58.17256227443719',
-        longitude: '-156.65548382095133'
+        longitude: '-156.65548382095133',
+        created_by: 1
       } }
 
       it 'returns status code 422' do

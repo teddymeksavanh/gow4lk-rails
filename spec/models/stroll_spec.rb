@@ -11,5 +11,6 @@ RSpec.describe Stroll, type: :model do
   it { should validate_presence_of(:city) }
   it { should validate_presence_of(:country) }
   it { should validate_presence_of(:length) }
-  it { should validate_presence_of(:created_date) } 
+  it { should validate_presence_of(:created_date) }
+  it { should validate_presence_of(:created_by) }
 end

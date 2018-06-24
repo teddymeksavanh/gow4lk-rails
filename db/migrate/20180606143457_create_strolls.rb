@@ -9,6 +9,7 @@ class CreateStrolls < ActiveRecord::Migration[5.2]
       t.string :country
       t.float :latitude
       t.float :longitude
+      t.string :created_by
 
       t.timestamps
     end
