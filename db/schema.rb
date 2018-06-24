@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 2018_06_06_143457) do
     t.float "latitude"
     t.float "longitude"
     t.text "description"
+    t.integer "stroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["stroll_id"], name: "index_paths_on_stroll_id"
   end
 
   create_table "strolls", force: :cascade do |t|
@@ -63,8 +65,10 @@ ActiveRecord::Schema.define(version: 2018_06_06_143457) do
     t.string "name"
     t.text "description"
     t.string "color"
+    t.integer "stroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["stroll_id"], name: "index_types_on_stroll_id"
   end
 
 end
