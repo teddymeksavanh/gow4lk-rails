@@ -53,12 +53,8 @@ ActiveRecord::Schema.define(version: 2018_06_06_143457) do
     t.string "country"
     t.float "latitude"
     t.float "longitude"
-    t.integer "type_id"
-    t.integer "path_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["path_id"], name: "index_strolls_on_path_id"
-    t.index ["type_id"], name: "index_strolls_on_type_id"
   end
 
   create_table "types", force: :cascade do |t|
