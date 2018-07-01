@@ -4,13 +4,13 @@ class StrollsController < ApplicationController
   
     # GET /strolls
     def index
-      @strolls = Stroll.all
+      @strolls = current_user.strolls
       json_response(@strolls)
     end
   
     # POST /strolls
     def create
-      @stroll = Stroll.create!(stroll_params)
+      @stroll = current_user.strolls.create!(stroll_params)
       json_response(@stroll, :created)
     end
   
@@ -44,7 +44,6 @@ class StrollsController < ApplicationController
             :country,
             :latitude,
             :longitude,
-            :created_by
         )
         end
     
