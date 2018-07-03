@@ -7,4 +7,6 @@ class User < ApplicationRecord
     has_many :strolls, foreign_key: :created_by
     # Validations
     validates_presence_of :name, :email, :password_digest
+    # Validations specification
+    validates :email, uniqueness: true
   end
