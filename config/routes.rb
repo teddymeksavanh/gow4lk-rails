@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   end
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
-  get 'strolls/all', to:'strolls#strollsAll'
+  get 'alls', to:'strolls#strollsAll'
 end

@@ -9,7 +9,7 @@ class StrollsController < ApplicationController
     end
 
     def strollsAll
-      œstrolls = Stroll.all
+      @strolls = Stroll.unscoped.all
       json_response(@strolls)
     end
   
