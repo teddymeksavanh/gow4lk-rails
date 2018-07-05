@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     # PUT /users/:id
     def update
       @user = current_user
+      @user.avatar.attach(params[:avatar])
       @user.update_attributes(user_params)
       head :no_content
     end
