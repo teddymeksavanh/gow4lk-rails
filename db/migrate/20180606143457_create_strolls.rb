@@ -3,7 +3,6 @@ class CreateStrolls < ActiveRecord::Migration[5.2]
     create_table :strolls do |t|
       t.string :name
       t.text :description
-      t.date :created_date
       t.float :length
       t.string :city
       t.string :country
