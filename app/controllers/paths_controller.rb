@@ -5,7 +5,7 @@ class PathsController < ApplicationController
   
     # GET /strolls/:stroll_id/paths
     def index
-      json_response(@stroll.paths)
+      json_response(@stroll.paths.order('id ASC').all)
     end
   
     # GET /strolls/:stroll_id/paths/:id
@@ -30,6 +30,12 @@ class PathsController < ApplicationController
       # puts 'EARPKAEORKZOAKRAO'
       # puts @stroll.paths.inspect
       @path.destroy
+      head :no_content
+    end
+
+    def deleteAllPaths
+      @allPath = @stroll.paths
+      @allPath.destroy
       head :no_content
     end
   

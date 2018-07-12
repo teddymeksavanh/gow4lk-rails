@@ -10,7 +10,7 @@ class StrollsController < ApplicationController
 
     def strollsAll
       @strolls = Stroll.unscoped.all
-      json_response(@strolls)
+      json_response(@strolls.order("RANDOM()"))
     end
   
     # POST /strolls
