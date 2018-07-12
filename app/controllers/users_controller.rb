@@ -7,6 +7,11 @@ class UsersController < ApplicationController
       json_response(@user)
     end
 
+    # def meAvatar
+    #   @user = current_user
+    #   json_response(@user)
+    # end
+
     def create
       user = User.create!(user_params)
       auth_token = AuthenticateUser.new(user.email, user.password).call
@@ -17,10 +22,21 @@ class UsersController < ApplicationController
     # PUT /users/:id
     def update
       @user = current_user
-      @user.avatar.attach(params[:avatar])
       @user.update_attributes(user_params)
       head :no_content
     end
+
+    # PUT /me/avatar
+    # def updateAvatar
+      # @user = current_user
+      # @user.avatar.purge
+      # @user.avatar.attach(params[:avatar])
+      # json_response(@user.avatar.attachment)
+    #   @user = current_user
+    #   @user.avatar.purge
+    #   @user.avatar.attach(params[:avatar])
+    #   head :no_content
+    # end
 
     # DELETE /strolls/:id
     # def destroy
@@ -32,11 +48,11 @@ class UsersController < ApplicationController
   
     def user_params
       params.permit(
+        :avatar,
         :name,
         :email,
         :password,
-        :password_confirmation,
-        :avatar
+        :password_confirmation
       )
     end
   end

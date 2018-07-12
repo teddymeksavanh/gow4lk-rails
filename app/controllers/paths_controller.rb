@@ -27,6 +27,8 @@ class PathsController < ApplicationController
   
     # DELETE /strolls/:stroll_id/paths/:id
     def destroy
+      # puts 'EARPKAEORKZOAKRAO'
+      # puts @stroll.paths.inspect
       @path.destroy
       head :no_content
     end
