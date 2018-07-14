@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   # get 'me/avatar', to: 'users#meAvatar'
   # post 'me/avatar', to: 'users#updateAvatar'
   put 'me', to: 'users#update'
-  destroy 'pathsdelete', to: 'paths#deleteAllPaths'
+  delete 'pathsdelete', to: 'paths#deleteAllPaths'
 end
