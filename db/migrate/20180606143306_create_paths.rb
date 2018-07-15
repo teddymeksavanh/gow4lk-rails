@@ -5,7 +5,7 @@ class CreatePaths < ActiveRecord::Migration[5.2]
       t.float :latitude
       t.float :longitude
       t.text :description
-      t.references :stroll, foreign_key: true      
+      t.references :stroll
 
       t.timestamps
     end

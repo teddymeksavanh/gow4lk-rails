@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -38,11 +38,20 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
 
   create_table "comments", force: :cascade do |t|
     t.string "description"
-    t.string "created_by"
+    t.bigint "user_id"
     t.bigint "stroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stroll_id"], name: "index_comments_on_stroll_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.bigint "stroll_id"
+    t.string "gallery"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stroll_id"], name: "index_galleries_on_stroll_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -60,7 +69,7 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
     t.float "latitude"
     t.float "longitude"
     t.text "description"
-    t.bigint "stroll_id"
+    t.integer "stroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stroll_id"], name: "index_paths_on_stroll_id"
@@ -77,6 +86,7 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
     t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
     t.string "gallery"
   end
 
@@ -84,7 +94,7 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
     t.string "name"
     t.text "description"
     t.string "color"
-    t.bigint "stroll_id"
+    t.integer "stroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stroll_id"], name: "index_types_on_stroll_id"
@@ -104,6 +114,9 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
     t.string "picture"
   end
 
+  add_foreign_key "comments", "strolls"
+  add_foreign_key "comments", "users"
+  add_foreign_key "galleries", "strolls"
   add_foreign_key "notes", "strolls"
   add_foreign_key "notes", "users"
 end

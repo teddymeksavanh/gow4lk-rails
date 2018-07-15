@@ -15,6 +15,9 @@ class CommentsController < ApplicationController
     # POST /strolls/:stroll_id/comments
     def create
       comment = @stroll.comments.create!(comment_params)
+      # currentU = current_user.comments.create!(comment_params)
+      # comment.commented_by = current_user.id
+      puts params.inspect
       json_response(comment, :created)
     end
   
@@ -42,7 +45,8 @@ class CommentsController < ApplicationController
   
     def comment_params
       params.permit(
-        :description
+        :description,
+        :created_by
       )
     end
   
