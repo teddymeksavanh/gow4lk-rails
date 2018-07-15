@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :strolls do
-    resources :types, :paths
+    resources :types, :paths, :comments, :notes
   end
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'

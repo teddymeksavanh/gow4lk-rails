@@ -1,6 +1,8 @@
 class Stroll < ApplicationRecord
   has_many :types, dependent: :destroy
   has_many :paths, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :notes, dependent: :destroy
 
   mount_base64_uploader :gallery, PictureUploader
 
