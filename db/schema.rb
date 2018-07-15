@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_14_173638) do
+ActiveRecord::Schema.define(version: 2018_07_15_001514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2018_07_14_173638) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.bigint "stroll_id"
+    t.string "gallery"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stroll_id"], name: "index_galleries_on_stroll_id"
+  end
+
   create_table "paths", force: :cascade do |t|
     t.string "name"
     t.float "latitude"
@@ -58,6 +66,8 @@ ActiveRecord::Schema.define(version: 2018_07_14_173638) do
     t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
+    t.string "gallery"
   end
 
   create_table "types", force: :cascade do |t|
@@ -84,4 +94,5 @@ ActiveRecord::Schema.define(version: 2018_07_14_173638) do
     t.string "picture"
   end
 
+  add_foreign_key "galleries", "strolls"
 end

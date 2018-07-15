@@ -7,10 +7,10 @@ class UsersController < ApplicationController
       json_response(@user)
     end
 
-    # def meAvatar
-    #   @user = current_user
-    #   json_response(@user)
-    # end
+    def meAvatar
+      @user = current_user
+      json_response(@user)
+    end
 
     def create
       user = User.create!(user_params)
@@ -22,21 +22,7 @@ class UsersController < ApplicationController
     # PUT /users/:id
     def update
       @user = current_user
-      # @user.picture.create(params[:picture])
       @user.update_attributes(user_params)
-      head :no_content
-    end
-
-    # PUT /me/avatar
-    def createAvatar
-      @user = current_user
-      # @user.picture.create(params[:picture])
-      # @user.avatar.purge
-      # @user.avatar.attach(params[:avatar])
-      # json_response(@user.avatar.attachment)
-      # @user = current_user
-      # @user.avatar.purge
-      # @user.avatar.attach(params[:avatar])
       head :no_content
     end
 
