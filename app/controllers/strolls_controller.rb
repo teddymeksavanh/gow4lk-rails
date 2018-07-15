@@ -7,6 +7,11 @@ class StrollsController < ApplicationController
       @strolls = current_user.strolls
       json_response(@strolls)
     end
+
+    def strollsAll
+      @strolls = Stroll.unscoped.all
+      json_response(@strolls.order("RANDOM()"))
+    end
   
     # POST /strolls
     def create
@@ -34,20 +39,21 @@ class StrollsController < ApplicationController
     private
   
         def stroll_params
-        # whitelist params
-        params.permit(
-            :name,
-            :description,
-            :created_date,
-            :length,
-            :city,
-            :country,
-            :latitude,
-            :longitude,
-        )
+          # whitelist params
+          params.permit(
+              :name,
+              :description,
+              :created_date,
+              :length,
+              :city,
+              :country,
+              :latitude,
+              :longitude,
+              :gallery
+          )
         end
     
         def set_stroll
-        @stroll = Stroll.find(params[:id])
+          @stroll = Stroll.find(params[:id])
         end
 end

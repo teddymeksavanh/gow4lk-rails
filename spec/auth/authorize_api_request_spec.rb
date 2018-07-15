@@ -16,6 +16,9 @@ RSpec.describe AuthorizeApiRequest do
     # returns user object when request is valid
     context 'when valid request' do
       it 'returns user object' do
+        puts "HEADER --- valid"
+        puts :headers.inspect
+        puts :request_obj.inspect
         result = request_obj.call
         expect(result[:user]).to eq(user)
       end
@@ -25,6 +28,9 @@ RSpec.describe AuthorizeApiRequest do
     context 'when invalid request' do
       context 'when missing token' do
         it 'raises a MissingToken error' do
+          puts "HEADER --- invalid"
+          puts :headers.inspect
+          puts :request_obj.inspect
           expect { invalid_request_obj.call }
             .to raise_error(ExceptionHandler::MissingToken, 'Missing token')
         end

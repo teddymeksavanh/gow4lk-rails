@@ -65,7 +65,6 @@ RSpec.describe 'Strolls API', type: :request do
       {
         name: 'RunningPool',
         description: 'My running pool stroll',
-        created_date: '2017-09-17',
         length: 12,
         city: 'Paris',
         country: 'France',
@@ -80,7 +79,6 @@ RSpec.describe 'Strolls API', type: :request do
       it 'creates a stroll' do
         expect(json['name']).to eq('RunningPool')
         expect(json['description']).to eq('My running pool stroll')
-        expect(json['created_date']).to eq('2017-09-17')
         expect(json['length']).to eq(12)
         expect(json['city']).to eq('Paris')
         expect(json['country']).to eq('France')
@@ -99,7 +97,6 @@ RSpec.describe 'Strolls API', type: :request do
           name: 'RunningPool',
           description: 'My running pool stroll',
           length: 12,
-          city: 'Paris',
           country: 'France',
           latitude: '-58.17256227443719',
           longitude: '-156.65548382095133',
@@ -115,7 +112,7 @@ RSpec.describe 'Strolls API', type: :request do
 
       it 'returns a validation failure message' do
         expect(response.body)
-          .to match(/Validation failed: Created date can't be blank/)
+          .to match(/Validation failed: City can't be blank/)
       end
     end
   end

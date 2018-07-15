@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_24_172746) do
+ActiveRecord::Schema.define(version: 2018_07_15_001514) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +36,14 @@ ActiveRecord::Schema.define(version: 2018_06_24_172746) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.bigint "stroll_id"
+    t.string "gallery"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stroll_id"], name: "index_galleries_on_stroll_id"
+  end
+
   create_table "paths", force: :cascade do |t|
     t.string "name"
     t.float "latitude"
@@ -47,7 +58,6 @@ ActiveRecord::Schema.define(version: 2018_06_24_172746) do
   create_table "strolls", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.date "created_date"
     t.float "length"
     t.string "city"
     t.string "country"
@@ -56,6 +66,8 @@ ActiveRecord::Schema.define(version: 2018_06_24_172746) do
     t.string "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
+    t.string "gallery"
   end
 
   create_table "types", force: :cascade do |t|
@@ -72,8 +84,15 @@ ActiveRecord::Schema.define(version: 2018_06_24_172746) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string "picture"
   end
 
+  add_foreign_key "galleries", "strolls"
 end
