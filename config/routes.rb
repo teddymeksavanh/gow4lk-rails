@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :strolls do
     # resources :types, :paths, :comments, :notes
-    resources :types, :paths, :comments
+    resources :types, :paths, :comments, :notes
     # ressources :types, :paths
   end
   # resources :comments, :notes
