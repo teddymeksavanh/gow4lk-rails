@@ -47,12 +47,11 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
 
   create_table "notes", force: :cascade do |t|
     t.string "description"
-    t.bigint "user_id"
+    t.string "created_by"
     t.bigint "stroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stroll_id"], name: "index_notes_on_stroll_id"
-    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "paths", force: :cascade do |t|
@@ -105,5 +104,4 @@ ActiveRecord::Schema.define(version: 2018_07_15_111146) do
   end
 
   add_foreign_key "notes", "strolls"
-  add_foreign_key "notes", "users"
 end

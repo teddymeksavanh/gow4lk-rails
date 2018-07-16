@@ -14,8 +14,8 @@ class NotesController < ApplicationController
   
     # POST /strolls/:stroll_id/notes
     def create
-      @stroll.notes.create!(note_params)
-      json_response(@stroll, :created)
+      note = @stroll.notes.create!(note_params)
+      json_response(note, :created)
     end
   
     # PUT /strolls/:stroll_id/notes/:id
@@ -42,7 +42,8 @@ class NotesController < ApplicationController
   
     def note_params
       params.permit(
-        :description
+        :description,
+        :created_by
       )
     end
   

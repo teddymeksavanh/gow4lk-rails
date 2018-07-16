@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
       comment = @stroll.comments.create!(comment_params)
       # currentU = current_user.comments.create!(comment_params)
       # comment.commented_by = current_user.id
-      puts params.inspect
+      # puts params.inspect
       json_response(comment, :created)
     end
   
