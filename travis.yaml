@@ -1,0 +1,18 @@
+branches:
+  only:
+  - master
+  - develop
+language: ruby
+rvm:
+  - 2.3.1
+
+before_script:
+  - bundle exec rake db:migrate
+  - bundle exec rails s
+
+script: 
+  - bundle exec rake secure_pipeline:network_attack
+  - bundle exec rake secure_pipeline:ssl_attack
+  - bundle exec rake secure_pipeline:xss
+  - bundle exec rake secure_pipeline:information_leakage
+  - bundle exec rake secure_pipeline:sql_injection
