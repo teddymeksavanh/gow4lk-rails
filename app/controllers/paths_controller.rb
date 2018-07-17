@@ -22,7 +22,7 @@ class PathsController < ApplicationController
     # PUT /strolls/:stroll_id/paths/:id
     def update
       @path.update(path_params)
-      head :no_content
+      json_response(@path)
     end
   
     # DELETE /strolls/:stroll_id/paths/:id
@@ -46,7 +46,8 @@ class PathsController < ApplicationController
         :name,
         :longitude,
         :latitude,
-        :description
+        :description,
+        :photo
       )
     end
   

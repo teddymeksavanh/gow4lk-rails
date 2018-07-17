@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # get 'me/avatar', to: 'users#meAvatar'
   # post 'me/avatar', to: 'users#updateAvatar'
   put 'me', to: 'users#update'
+  get 'users/:id', to: 'users#getUser'
   delete 'pathsdelete', to: 'paths#deleteAllPaths'
 
   # comments

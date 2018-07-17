@@ -21,6 +21,7 @@ gem "paperclip", "~> 5.0.0.beta1"
 gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'jwt'
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'aws-sdk-s3', require: false
 
 # Use ActiveStorage variant

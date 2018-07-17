@@ -7,7 +7,7 @@ class Stroll < ApplicationRecord
   mount_base64_uploader :gallery, PictureUploader
 
   # validates :length, :latitude, :longitude, presence: false
-  validates_presence_of :name, :description, :city, :country, :created_by
+  validates_presence_of :name, :description, :city, :created_by
   private
     def parse_image
       image = Paperclip.io_adapters.for(image_base)

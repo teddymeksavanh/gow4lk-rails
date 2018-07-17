@@ -26,6 +26,11 @@ class UsersController < ApplicationController
       head :no_content
     end
 
+    def getUser
+      user = User.find(params[:id])
+      json_response(user)
+    end
+
     # DELETE /strolls/:id
     # def destroy
     #   @user.destroy
