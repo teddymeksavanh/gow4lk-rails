@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_07_17_023517) do
     t.float "latitude"
     t.float "longitude"
     t.string "created_by"
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(version: 2018_07_17_023517) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin"
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture_file_name"

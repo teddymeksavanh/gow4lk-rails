@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   # post 'me/avatar', to: 'users#updateAvatar'
   put 'me', to: 'users#update'
   get 'users/:id', to: 'users#getUser'
+  get 'usersall', to: 'users#allUser'
+  get 'commentsall', to: 'comments#allComment'
+  put 'users/:id', to: 'users#updateUser'
   delete 'pathsdelete', to: 'paths#deleteAllPaths'
 
   # comments

@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     def index
       json_response(@stroll.comments.all)
     end
+
   
     # GET /strolls/:stroll_id/comments/:id
     def show

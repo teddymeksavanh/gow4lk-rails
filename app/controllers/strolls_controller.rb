@@ -49,7 +49,8 @@ class StrollsController < ApplicationController
               :country,
               :latitude,
               :longitude,
-              :gallery
+              :gallery,
+              :is_active
           )
         end
     
