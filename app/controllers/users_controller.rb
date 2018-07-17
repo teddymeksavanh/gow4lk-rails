@@ -4,6 +4,11 @@ class UsersController < ApplicationController
     
     def allUser
       @user = User.unscoped.all
+      json_response(@user.where('is_active is null').order("RANDOM()"))
+    end
+
+    def allUserForce
+      @user = User.unscoped.all
       json_response(@user.order("RANDOM()"))
     end
 

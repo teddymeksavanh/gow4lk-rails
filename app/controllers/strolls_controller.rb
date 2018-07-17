@@ -12,6 +12,11 @@ class StrollsController < ApplicationController
       @strolls = Stroll.unscoped.all
       json_response(@strolls.order("RANDOM()"))
     end
+
+    # def strollsAllAdmin
+    #   @strolls = Stroll.unscoped.all
+    #   json_response(@strolls.order("RANDOM()"))
+    # end
   
     # POST /strolls
     def create
