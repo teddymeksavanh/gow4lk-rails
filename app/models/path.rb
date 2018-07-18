@@ -3,8 +3,8 @@ class Path < ApplicationRecord
     # has_one_attached :media
     mount_base64_uploader :photo, PictureUploader
 
-# validates :name, :description
-validates_presence_of :latitude, :longitude
+    # validates :name, :description
+    validates_presence_of :latitude, :longitude
 
 private
     def parse_image
