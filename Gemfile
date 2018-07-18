@@ -23,6 +23,7 @@ gem 'carrierwave-base64'
 gem 'jwt'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'aws-sdk-s3', require: false
+gem 'rails_12factor'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
