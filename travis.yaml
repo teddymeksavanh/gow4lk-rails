@@ -9,6 +9,7 @@ rvm:
 before_script:
   - bundle exec rake db:migrate
   - bundle exec rails s
+  - bundle exec rspec
 
 script: 
   - bundle exec rake secure_pipeline:network_attack
