@@ -2,11 +2,12 @@
 class TypesController < ApplicationController
     before_action :set_stroll
     before_action :set_stroll_type, only: [:show, :update, :destroy]
-  
+
     # GET /strolls/:stroll_id/types
     def index
-      json_response(@stroll.types)
+      json_response(@stroll.types.all)
     end
+
   
     # GET /strolls/:stroll_id/types/:id
     def show
@@ -15,8 +16,11 @@ class TypesController < ApplicationController
   
     # POST /strolls/:stroll_id/types
     def create
-      @stroll.types.create!(type_params)
-      json_response(@stroll, :created)
+      type = @stroll.types.create!(type_params)
+      # currentU = current_user.types.create!(type_params)
+      # type.typeed_by = current_user.id
+      # puts params.inspect
+      json_response(type, :created)
     end
   
     # PUT /strolls/:stroll_id/types/:id
@@ -27,6 +31,8 @@ class TypesController < ApplicationController
   
     # DELETE /strolls/:stroll_id/types/:id
     def destroy
+      # puts 'EARPKAEORKZOAKRAO'
+      # puts @stroll.types.inspect
       @type.destroy
       head :no_content
     end
@@ -49,3 +55,19 @@ class TypesController < ApplicationController
       @type = @stroll.types.find_by!(id: params[:id]) if @stroll
     end
   end
+
+  # getTypes(strollId: number) {
+  #   return this.api.get(`strolls/${strollId}/types`);
+  # }
+
+  # getAllTypes() {
+  #   return this.api.get(`types`);
+  # }
+
+  # addType(type) {
+  #   return this.api.post(`types`, type);
+  # }
+
+  # deleteType(strollId: number, typeId: number) {
+  #   return this.api.delete(`types/${typeId}`);
+  # }
