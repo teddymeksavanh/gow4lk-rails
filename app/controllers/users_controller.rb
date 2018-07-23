@@ -47,11 +47,12 @@ class UsersController < ApplicationController
       json_response(user)
     end
 
-    # DELETE /strolls/:id
-    # def destroy
-    #   @user.destroy
-    #   head :no_content
-    # end
+    # DELETE /users/:id
+    def deleteMe
+      User.destroy(params[:id])
+      # User.find(params[:id]).destroy
+      head :no_content
+    end
   
     private
   

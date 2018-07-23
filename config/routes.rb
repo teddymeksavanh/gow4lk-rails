@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # get 'me/avatar', to: 'users#meAvatar'
   # post 'me/avatar', to: 'users#updateAvatar'
   put 'me', to: 'users#update'
+  delete 'users/:id', to: 'users#deleteMe'
   get 'users/:id', to: 'users#getUser'
   get 'usersall', to: 'users#allUser'
   get 'commentsall', to: 'comments#allComment'
