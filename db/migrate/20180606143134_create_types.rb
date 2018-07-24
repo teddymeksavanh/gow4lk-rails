@@ -4,7 +4,7 @@ class CreateTypes < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :description
       t.string :color
-      t.references :stroll         
+      # t.references :stroll
 
       t.timestamps
     end

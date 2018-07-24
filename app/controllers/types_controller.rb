@@ -1,73 +1,51 @@
-# app/controllers/types_controller.rb
 class TypesController < ApplicationController
-    before_action :set_stroll
-    before_action :set_stroll_type, only: [:show, :update, :destroy]
+  before_action :set_type, only: [:destroy]
+  skip_before_action :authorize_request, only: :index
 
-    # GET /strolls/:stroll_id/types
-    def index
-      json_response(@stroll.types.all)
-    end
-
-  
-    # GET /strolls/:stroll_id/types/:id
-    def show
-      json_response(@type)
-    end
-  
-    # POST /strolls/:stroll_id/types
-    def create
-      type = @stroll.types.create!(type_params)
-      # currentU = current_user.types.create!(type_params)
-      # type.typeed_by = current_user.id
-      # puts params.inspect
-      json_response(type, :created)
-    end
-  
-    # PUT /strolls/:stroll_id/types/:id
-    def update
-      @type.update(type_params)
-      head :no_content
-    end
-  
-    # DELETE /strolls/:stroll_id/types/:id
-    def destroy
-      # puts 'EARPKAEORKZOAKRAO'
-      # puts @stroll.types.inspect
-      @type.destroy
-      head :no_content
-    end
-  
-    private
-  
-    def type_params
-      params.permit(
-        :name,
-        :description,
-        :color
-      )
-    end
-  
-    def set_stroll
-      @stroll = Stroll.find(params[:stroll_id])
-    end
-  
-    def set_stroll_type
-      @type = @stroll.types.find_by!(id: params[:id]) if @stroll
-    end
+  # GET /types
+  def index
+    @types = Type.all
+    json_response(@types)
   end
 
-  # getTypes(strollId: number) {
-  #   return this.api.get(`strolls/${strollId}/types`);
-  # }
+  # GET /types/stroll
+  def index_stroll
+    @types = current_stroll.types
+    json_response(@types)
+  end
 
-  # getAllTypes() {
-  #   return this.api.get(`types`);
-  # }
+  # POST /types/stroll
+  def create
+    type = Type.find(type_params[:id])
+    @types = current_stroll.types.push(type)
+    json_response(@types)
+  end
 
-  # addType(type) {
-  #   return this.api.post(`types`, type);
-  # }
+  def createType
+    type = Type.create!(type_params)
+    json_response(type, :created)
+  end
 
-  # deleteType(strollId: number, typeId: number) {
-  #   return this.api.delete(`types/${typeId}`);
-  # }
+  # DELETE /types/stroll
+  def destroy
+    @types = current_stroll.types.destroy(@type)
+    response = { message: Message.entry_deleted }
+    json_response(response)
+  end
+
+  def deleteType
+    Type.destroy(params[:id])
+    head :no_content
+  end
+
+  private
+
+  def type_params
+    # whitelist params
+    params.permit(:id, :name, :color, :description)
+  end
+
+  def set_type
+    @type = current_stroll.types.find(params[:id])
+  end
+end

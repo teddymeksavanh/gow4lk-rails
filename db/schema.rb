@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_17_023517) do
+ActiveRecord::Schema.define(version: 2018_07_24_164452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 2018_07_17_023517) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
+  end
+
+  create_table "strolls_types", id: false, force: :cascade do |t|
+    t.integer "stroll_id"
+    t.integer "type_id"
+    t.index ["stroll_id", "type_id"], name: "index_strolls_types_on_stroll_id_and_type_id", unique: true
+    t.index ["stroll_id"], name: "index_strolls_types_on_stroll_id"
+    t.index ["type_id"], name: "index_strolls_types_on_type_id"
   end
 
   create_table "types", force: :cascade do |t|
