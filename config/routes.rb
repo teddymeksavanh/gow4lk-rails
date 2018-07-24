@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :strolls do
     # resources :types, :paths, :comments, :notes
-    resources :types, :paths, :comments, :notes
+    resources :paths, :comments, :notes
     # ressources :types, :paths
   end
   # resources :comments, :notes
@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   # types
   get 'types', to: 'types#index'
   post 'types', to: 'types#createType'
-  get 'types/stroll', to: 'types#index_stroll'
-  post 'types/stroll', to: 'types#create'
+  get 'types/stroll/:id', to: 'types#index_stroll'
+  put 'types/:id/stroll/:stroll_id', to: 'types#updateStrollType'
+  delete 'types/:id/stroll/:stroll_id', to: 'types#deleteStrollType'
+  post 'types/stroll/:stroll_id', to: 'types#postStrollType'
   match "types/stroll/:id" => "types#destroy", via: [:delete]
   delete "types/:id" => "types#deleteType"
 

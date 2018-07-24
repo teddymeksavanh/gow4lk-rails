@@ -7,6 +7,7 @@ class CreateStrollsTypes < ActiveRecord::Migration[5.2]
 
     add_index :strolls_types, :stroll_id
     add_index :strolls_types, :type_id
-    add_index :strolls_types, [ :stroll_id, :type_id ], :unique => true
+    add_index :strolls_types, [ :stroll_id, :type_id ]
+    add_index :strolls_types, [ :stroll_id, :type_id ]
   end
 end
