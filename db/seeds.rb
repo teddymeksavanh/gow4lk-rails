@@ -28,14 +28,15 @@ Type.create(color: Faker::Color.hex_color, description: '', name: 'Campagne')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Pélerinage')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Hors-sentier')
 
-User.create(name: 'Denver', email: 'denver@gmail.com', password: 'denver', admin: true);
-User.create(name: 'Denver friend', email: 'denverfriend@gmail.com', password: 'denver');
+User.create(name: 'Denver', email: 'denver@gmail.com', password: 'denver', admin: true, picture: Faker::Avatar.image);
+User.create(name: 'Denver friend', email: 'denverfriend@gmail.com', password: 'denver', picture: Faker::Avatar.image);
 
 3.times do
   user = User.create(
     name: Faker::OnePiece.character,
     email: Faker::Internet.free_email,
-    password: Faker::Internet.password
+    password: Faker::Internet.password,
+    picture_seed: Faker::LoremFlickr.image("200x200")
   )
 
   # Strolls
@@ -50,7 +51,8 @@ User.create(name: 'Denver friend', email: 'denverfriend@gmail.com', password: 'd
       length: Faker::Number.decimal(2, 2),
       city: Faker::Address.full_address,
       country: Faker::Address.full_address,
-      created_by: user.id
+      created_by: user.id,
+      gallery_seed: Faker::LoremFlickr.image("500x500", ['paris'])
     )
 
     # Paths
@@ -62,7 +64,8 @@ User.create(name: 'Denver friend', email: 'denverfriend@gmail.com', password: 'd
             description: Faker::Lorem.sentence,
             longitude: Faker::Address.longitude,
             latitude: Faker::Address.latitude,
-            stroll_id: stroll.id
+            stroll_id: stroll.id,
+            photo_seed: Faker::LoremFlickr.image("500x500", ['holidays'])
         )
         countPaths+=1
     end

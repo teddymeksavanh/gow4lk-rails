@@ -63,7 +63,8 @@ class UsersController < ApplicationController
         :email,
         :password,
         :password_confirmation,
-        :is_active
+        :is_active,
+        :picture_seed
       )
     end
   end

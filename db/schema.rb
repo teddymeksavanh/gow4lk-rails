@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2018_07_24_164452) do
     t.float "latitude"
     t.float "longitude"
     t.text "description"
+    t.string "photo_seed"
     t.bigint "stroll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 2018_07_24_164452) do
     t.float "longitude"
     t.string "created_by"
     t.boolean "is_active"
+    t.string "gallery_seed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gallery"
@@ -103,6 +105,7 @@ ActiveRecord::Schema.define(version: 2018_07_24_164452) do
     t.string "password_digest"
     t.boolean "admin"
     t.boolean "is_active"
+    t.string "picture_seed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture_file_name"

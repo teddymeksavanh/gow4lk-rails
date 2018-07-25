@@ -55,7 +55,8 @@ class StrollsController < ApplicationController
               :latitude,
               :longitude,
               :gallery,
-              :is_active
+              :is_active,
+              :gallery_seed
           )
         end
     

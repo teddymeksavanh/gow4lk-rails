@@ -5,6 +5,8 @@ class CreatePaths < ActiveRecord::Migration[5.2]
       t.float :latitude
       t.float :longitude
       t.text :description
+      t.string :photo_seed
+      
       t.references :stroll
 
       t.timestamps

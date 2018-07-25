@@ -10,6 +10,7 @@ class CreateStrolls < ActiveRecord::Migration[5.2]
       t.float :longitude
       t.string :created_by
       t.boolean :is_active
+      t.string :gallery_seed
       
       t.timestamps
     end

@@ -47,7 +47,8 @@ class PathsController < ApplicationController
         :longitude,
         :latitude,
         :description,
-        :photo
+        :photo,
+        :photo_seed
       )
     end
   
