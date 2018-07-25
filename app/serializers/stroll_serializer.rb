@@ -4,7 +4,7 @@ class StrollSerializer < ActiveModel::Serializer
   has_many :paths
   has_many :comments
   has_many :notes
-  has_many :types
+  has_many :strolltypes
 
   def user
     User.find(object.created_by.to_s)

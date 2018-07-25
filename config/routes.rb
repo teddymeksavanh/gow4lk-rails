@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # new Types
+  resources :types
   resources :strolls do
     # resources :types, :paths, :comments, :notes
     resources :paths, :comments, :notes
@@ -21,14 +23,21 @@ Rails.application.routes.draw do
   delete 'pathsdelete', to: 'paths#deleteAllPaths'
 
   # types
-  get 'types', to: 'types#index'
-  post 'types', to: 'types#createType'
-  get 'types/stroll/:id', to: 'types#index_stroll'
-  put 'types/:id/stroll/:stroll_id', to: 'types#updateStrollType'
-  delete 'types/:id/stroll/:stroll_id', to: 'types#deleteStrollType'
-  post 'types/stroll/:stroll_id', to: 'types#postStrollType'
-  match "types/stroll/:id" => "types#destroy", via: [:delete]
-  delete "types/:id" => "types#deleteType"
+  # get 'types', to: 'types#index'
+  # post 'types', to: 'types#createType'
+  # get 'types/stroll/:id', to: 'types#index_stroll'
+  # put 'types/:id/stroll/:stroll_id', to: 'types#updateStrollType'
+  # delete 'types/:id/stroll/:stroll_id', to: 'types#deleteStrollType'
+  # post 'types/stroll/:stroll_id', to: 'types#postStrollType'
+  # match "types/stroll/:id" => "types#destroy", via: [:delete]
+  # delete "types/:id" => "types#deleteType"
+
+  # new Strolls Types
+  get 'strolls/:id/types', to: 'strolltypes#index'
+  get 'strolls/:stroll_id/types/:id', to: 'strolltypes#show'
+  post 'strolls/:stroll_id/types', to: 'strolltypes#create'
+  put 'strolls/:stroll_id/types/:id', to: 'strolltypes#update'
+  delete 'strolls/:stroll_id/types/:id', to: 'strolltypes#destroy'
 
   # comments
   # get 'allscomments', to: 'comments#commentsAll'

@@ -13,8 +13,6 @@ Type.create(color: Faker::Color.hex_color, description: '', name: 'Tourisme')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Randonnée')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Aventure')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Urbex')
-Type.create(color: Faker::Color.hex_color, description: '', name: 'Religion')
-Type.create(color: Faker::Color.hex_color, description: '', name: 'Islam')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Boudhisme')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Chrétien')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Boutique')
@@ -27,61 +25,82 @@ Type.create(color: Faker::Color.hex_color, description: '', name: 'Montagne')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Plage')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Ville')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Campagne')
+Type.create(color: Faker::Color.hex_color, description: '', name: 'Pélerinage')
 Type.create(color: Faker::Color.hex_color, description: '', name: 'Hors-sentier')
 
-# Fake seeds
+User.create(name: 'Denver', email: 'denver@gmail.com', password: 'denver', admin: true);
+User.create(name: 'Denver friend', email: 'denverfriend@gmail.com', password: 'denver');
 
-# google_ids = []
-# 50.times do
-#   google_ids.push(Faker::Code.ean)
-# end
+3.times do
+  user = User.create(
+    name: Faker::OnePiece.character,
+    email: Faker::Internet.free_email,
+    password: Faker::Internet.password
+  )
 
-# 30.times do
-#   user = User.create(
-#     name: Faker::StarWars.character,
-#     email: Faker::Internet.free_email,
-#     password: Faker::Internet.password,
-#     city: 'Paris',
-#     country: 'France',
-#     principal_language_id: 1,
-#     avatar_id: rand(1..10),
-#     firebase_id: Faker::Code.ean
-#   )
+  # Strolls
+  count = 0
+  iteration = rand(1..3)
+  while count < iteration
+    stroll = user.strolls.create(
+      name: Faker::OnePiece.location,
+      description: Faker::Lorem.sentence(6, true),
+      longitude: Faker::Address.longitude,
+      latitude: Faker::Address.latitude,
+      length: Faker::Number.decimal(2, 2),
+      city: Faker::Address.full_address,
+      country: Faker::Address.full_address,
+      created_by: user.id
+    )
 
-#   user.languages.push(Language.find(2))
+    # Paths
+    countPaths = 0
+    iterationPaths = rand(2..4)
+    while countPaths < iterationPaths
+        path = Path.create(
+            name: Faker::Company.name,
+            description: Faker::Lorem.sentence,
+            longitude: Faker::Address.longitude,
+            latitude: Faker::Address.latitude,
+            stroll_id: stroll.id
+        )
+        countPaths+=1
+    end
 
-#   count = 0
-#   iteration = rand(1..15)
-#   while count < iteration
-#     user.places.create(
-#       name: Faker::Company.name,
-#       img_url: Faker::LoremPixel.image,
-#       address: Faker::Address.full_address,
-#       longitude: Faker::Address.longitude,
-#       latitude: Faker::Address.latitude,
-#       google_id: google_ids.sample
-#     )
+    # Comments
+    countComments = 0
+    iterationComments = rand(1..7)
+    while countComments < iterationComments
+        comment = Comment.create(
+            description: Faker::Lorem.sentence,
+            stroll_id: stroll.id,
+            created_by: User.find(User.pluck(:id).sample).id
+        )
+        countComments+=1
+    end
 
-#     user.comments.create(
-#       content: Faker::Lorem.sentence,
-#       rating: rand(1..5),
-#       google_id: google_ids.sample
-#     )
-#     count+=1
-#   end
+    # Types
+    countTypes = 0
+    iterationTypes = rand(1..3)
+    while countTypes < iterationTypes
+        type = Strolltype.create(
+            type_id: Type.find(Type.pluck(:id).sample).id,
+            stroll_id: stroll.id
+        )
+        countTypes+=1
+    end
 
-#   count = 0
-#   iteration = rand(1..5)
-#   while count < iteration
-#     current_google_id = google_ids.sample
-#     reported_user =  User.includes(:comments).where("comments.google_id" => current_google_id).sample
-#     if reported_user
-#       user.reports.create(
-#         google_id: current_google_id,
-#         reported_user_id: reported_user.id
-#       )
-#       count+=1
-#     end
-#   end
-
-# end
+    # Notes
+    countNotes = 0
+    iterationNotes = rand(1..7)
+    while countNotes < iterationNotes
+        note = Note.create(
+            description: true,
+            stroll_id: stroll.id,
+            created_by: User.find(User.pluck(:id).sample).id
+        )
+        countNotes+=1
+    end
+    count+=1
+  end
+end
